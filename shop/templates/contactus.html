@@ -1,0 +1,44 @@
+{% extends 'basic.html' %}
+{% block title %}
+Contact us
+{% endblock title %} {% block contactus %}active
+{% endblock contactus %}
+{% block body %}
+<div class='container'>
+    <form action="/shop/contactus/" method="post">{% csrf_token %}
+        <div class="form-group">
+            <label for="name">Enter Your Name</label>
+            <input type="name" class="form-control" id="name" name="name" placeholder="Enter your name" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Enter Your E-mail</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="abcd@xyz.com" required>
+        </div>
+        <div class="form-group">
+            <label for="phone">Enter Your Name</label>
+            <input type="tel" class="form-control" id="phone" name="phone" placeholder="Enter your phone no." required>
+        </div>
+        <div class="form-group">
+            <label for="desc">Enter Your Query Here:</label>
+            <textarea class="form-control" id="desc" name="desc" rows="5" required></textarea>
+        </div>
+        <!-- Trigger the modal with a button -->
+        <button type="submit" class="btn btn-success btn-lg">submit</button>
+    </form>
+</div>
+{% endblock body %}
+{% block js %}
+<script>
+if (localStorage.getItem('cart') == null) {
+    var cart = {};
+} else {
+    cart = JSON.parse(localStorage.getItem('cart'));
+}
+var sum = 0;
+for (item in cart) {
+    let qty = cart[item][0];
+    sum = sum + qty;
+}
+document.getElementById('cart').innerHTML = sum;
+</script>
+{% endblock js %}

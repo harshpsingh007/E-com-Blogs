@@ -1,0 +1,30 @@
+{% extends 'basicblog.html' %}
+{% block title %}
+Contact us
+{% endblock title %}
+{% block contactactive %} active
+{% endblock contactactive %}
+{% block body %}
+<div class='container'>
+    <form action="/blog/contact_us/" method="post">{% csrf_token %}
+        <div class="form-group">
+            <label for="name">Enter Your Name</label>
+            <input type="name" class="form-control" id="name" name="name" placeholder="Enter your name" required>
+        </div>
+        <div class="form-group">
+            <label for="contactemail">Enter Your E-mail</label>
+            <input type="email" class="form-control" id="contactemail" name="contactemail" placeholder="abcd@xyz.com" required>
+        </div>
+        <div class="form-group">
+            <label for="phone">Enter Your Name</label>
+            <input type="tel" class="form-control" id="phone" name="phone" placeholder="Enter your phone no." required>
+        </div>
+        <div class="form-group">
+            <label for="desc">Enter Your Query Here:</label>
+            <textarea class="form-control" id="desc" name="desc" rows="5" required></textarea>
+        </div>
+        <!-- Trigger the modal with a button -->
+        <button type="submit" class="btn btn-danger btn-lg">submit</button>
+    </form>
+</div>
+{% endblock body %}

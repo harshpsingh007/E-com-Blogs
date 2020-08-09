@@ -1,0 +1,79 @@
+{% extends 'basicblog.html' %}
+{% block title %}
+ShopHome
+{% endblock title %}
+{% block css %}
+.col-md-3
+{
+display: inline-block;
+margin-left:-4px;
+}
+.carousel-indicators .active {
+background-color: blue;
+}
+.col-md-3 img{
+width: 170px;
+height: 200px;
+}
+body .carousel-indicator li{
+background-color: blue;
+}
+body .carousel-indicators{
+bottom: 0;
+}
+body .carousel-control-prev-icon,
+body .carousel-control-next-icon{
+background-color: blue;
+}
+.carousel-control-prev,
+.carousel-control-next{
+top: auto;
+bottom: auto;
+padding-top: 222px;
+}
+body .no-padding{
+padding-left: 0,
+padding-right: 0;
+}
+{% endblock css %}
+{% block body %}
+{% load static %}
+<div class='container mt-4'>
+<h4><strong class="text-danger">Search Result :-</strong> </h4>
+    <div class="row mb-2">
+        {% if mypost|length < 1%}
+        <div class="med card-section">
+            <p aria-level="3" role="heading" style="padding-top:.33em">Your search - <strong>{{query}}</strong> - did not match any documents.</p>
+            <p style="margin-top:1em">Suggestions:</p>
+            <ul style="margin-left:1.3em;margin-bottom:2em">
+                <li>Make sure that all words are spelled correctly.</li>
+                <li>Try different keywords.</li>
+                <li>Try more general keywords.</li>
+            </ul>
+        </div>
+        {% endif %}
+        
+        {% for item in mypost %}
+        <div class="col-md-6">
+
+            <div class="row no-gutters border border-success rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                <div class="col p-4 d-flex flex-column position-static">
+                    <strong class="d-inline-block mb-2 text-danger">{{item.post_title}}</strong>
+                    <h3 class="mb-0">Featured post</h3>
+                    <div class="mb-1 text-muted">{{item.publishing_date}}</div>
+                    <p class="card-text mb-auto">{{item.description}}</p>
+                    <a href="/blog/blogpost/{{item.post_id}}" class="stretched-link text-danger ">Continue reading....</a>
+                </div>
+                <div class="col-auto d-none d-lg-block">
+                    <img src="/media/{{item.thumbnail}}" class="bd-placeholder-img" width="200" height="250" aria-label="Placeholder: Thumbnail" />
+                </div>
+            </div>
+        </div>
+        {% if forloop.counter|divisibleby:4 and forloop.counter > 0 and not forloop.last %}
+    </div>
+    <div class="row mb-2">
+        {% endif %}
+        
+        {% endfor %}
+    </div>
+    {% endblock body %}

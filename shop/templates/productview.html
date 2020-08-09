@@ -1,0 +1,37 @@
+{% extends 'basic.html' %}
+{% block title%} {{product.product_name}} - My Awesome Cart{% endblock title %}
+{% block body %}
+<div class="container my-4">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="row">
+                <img src="/media/{{prods.product_image}}" width="300px" height="320px">
+            </div>
+            <div class="row py-2">
+                <a href="/shop/checkout/"><button id="co" class="btn btn-primary cart mx-2">QuickView</button></a>
+                <button class="btn btn-primary">Add To Cart</button>
+            </div>
+        </div>
+        <div class="col-md-8 pt-5 mt-5">
+            <h3><b>{{prods.product_name}}</b></h3>
+            <p><b>Rs. {{prods.product_price}} </b></p>
+            <p><i>{{prods.product_description}}</i></p>
+        </div>
+    </div>
+</div>
+{% endblock body %}
+{% block js %}
+<script>
+if (localStorage.getItem('cart') == null) {
+    var cart = {};
+} else {
+    cart = JSON.parse(localStorage.getItem('cart'));
+}
+var sum = 0;
+for (item in cart) {
+    let qty = cart[item][0];
+    sum = sum + qty;
+}
+document.getElementById('cart').innerHTML = sum;
+</script>
+{% endblock js%}

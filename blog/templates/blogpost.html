@@ -1,0 +1,108 @@
+{% extends 'basicblog.html' %}
+{% block title %}
+ShopHome
+{% endblock title %}
+{% block css %}
+.col-md-3
+{
+display: inline-block;
+margin-left:-4px;
+}
+.carousel-indicators .active {
+background-color: blue;
+}
+.col-md-3 img{
+width: 170px;
+height: 200px;
+}
+body .carousel-indicator li{
+background-color: blue;
+}
+body .carousel-indicators{
+bottom: 0;
+}
+body .carousel-control-prev-icon,
+body .carousel-control-next-icon{
+background-color: blue;
+}
+.carousel-control-prev,
+.carousel-control-next{
+top: auto;
+bottom: auto;
+padding-top: 222px;
+}
+body .no-padding{
+padding-left: 0,
+padding-right: 0;
+}
+{% endblock css %}
+{% block body %}
+{% load static %}
+<div class='container'>
+<div class="row">
+    <div class="col-md-8 blog-main">
+      <h3 class="pb-4 mb-4 font-italic border-bottom">
+        {{vlog.post_title}}
+      </h3>
+
+      <div class="blog-post">
+        <h2 class="blog-post-title"></h2>
+        <p class="blog-post-meta">  on  {{vlog.publishing_date}}<a href="#">  by  {{vlog.author_name}}</a></p>
+
+        <p>{{vlog.description}}</p>
+      </div><!-- /.blog-post -->
+
+      <div class="blog-post">
+        <h2 class="blog-post-title">{{vlog.head1}}</h2>
+
+        <p>{{vlog.content_head1}}</p>
+      </div><!-- /.blog-post -->
+            <div class="blog-post">
+        <h2 class="blog-post-title">{{vlog.head2}}</h2>
+
+        <p>{{vlog.content_head2}}</p>
+      </div><!-- /.blog-post -->
+            <div class="blog-post">
+        <h2 class="blog-post-title">{{vlog.head3}}</h2>
+
+        <p>{{vlog.content_head3}}</p>
+      </div><!-- /.blog-post -->
+            <div class="blog-post">
+        <h2 class="blog-post-title">{{vlog.head4}}</h2>
+
+        <p>{{vlog.content_head4}}</p>
+      </div>
+      <div class="fb-comments" data-href="http://127.0.0.1:8000/blog/blogpost/{{vlog.post_id}}" data-width="" data-numposts="5"></div>
+      <!-- /.blog-post -->
+
+      {% comment %} <nav class="blog-pagination">
+       <a class="btn btn-outline-primary" href="/blog/blogpost/{{vlog.post_id}}">Older</a>
+        <a class="btn btn-outline-danger" href="#" tabindex="-1" aria-disabled="true">Newer</a>
+        </nav> {% endcomment %}
+    </div><!-- /.blog-main -->
+
+    <aside class="col-md-4 blog-sidebar">
+      <div class="p-4 mb-3 bg-light rounded">
+        <h4 class="font-italic">About</h4>
+        <p class="mb-0">{{vlog.description}}</p>
+      </div>
+
+      <div class="fb-like" data-href="http://127.0.0.1:8000/blog/blogpost/{{vlog.post_id}}" data-show-facepile="true" data-width="" data-layout="standard" data-action="like" data-size="small" data-share="true"></div>
+
+      <div class="p-4">
+        <h4 class="font-italic">Contact us on :-</h4>
+        <ol class="list-unstyled">
+          <li><a href="#">GitHub</a></li>
+          <li><a href="#">Twitter</a></li>
+          <li><a href="#">Facebook</a></li>
+        </ol>
+      </div>
+    </aside><!-- /.blog-sidebar -->
+
+  </div>
+</div>
+{% endblock body %}
+{% block js %}
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v5.0"></script>
+{% endblock js %}

@@ -1,0 +1,58 @@
+{% extends 'basic.html' %}
+{% block title %}
+Your cart
+{% endblock title %}
+{% block cart %}active
+{% endblock cart %}
+{% block body %}
+<div class='container'>
+<div class=" py-2 mx-2">
+    <h3><i> YOUR CART ITEMS</i></h3>
+    <div class="py-2">
+        <ol class="list-group" id="items">
+        </ol>
+        <table class="table mt-4">
+        <tr class="table-success">
+        <th scope="col">Total Price :-</th>
+        <th scope="col">₹<span id='total'></span></th>
+        </tr>
+        </table>
+        
+</div>
+</div>
+{% endblock body %}
+{% block js %}
+<script>
+if (localStorage.getItem('cart') == null) {
+    var cart = {};
+} else {
+    cart = JSON.parse(localStorage.getItem('cart'));
+}
+var sum = 0;
+var totalprice = 0;
+if ($.isEmptyObject(cart)) {
+    //if object is empty
+    mystr = `<p class="text-danger"><b>NOTE-</b>Your cart is empty, please add some items to your cart before checking out!</p>`
+    $('#items').append(mystr);
+} else {
+    for (item in cart) {
+        let name = cart[item][1];
+        let qty = cart[item][0];
+        let price = cart[item][2];
+        sum = sum + qty;
+        totalprice=totalprice+price*qty;
+        mystr = `<li class="list-group-item d-flex justify-content-between">
+                    <b>${name}</b>
+                    <span>
+                    <h5><span class="badge badge-light px-4">Qty:- ${qty}</span></h5>
+                    <span class="badge badge-light badge-pill px-4">Price:- ₹ ${price} * ${qty}</span>
+                    </span>
+                </li>`
+        $('#items').append(mystr);
+    }
+}
+document.getElementById('cart').innerHTML = sum;
+document.getElementById('total').innerHTML = totalprice;
+$('#itemsjson').val(JSON.stringify(cart));
+</script>
+{% endblock js%}

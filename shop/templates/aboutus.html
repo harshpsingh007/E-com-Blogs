@@ -1,0 +1,47 @@
+{% extends 'basic.html' %}
+{% block title %}
+About Shop
+{% endblock title %}
+{% block aboutus %}active
+{% endblock aboutus %}
+{% block body %}
+<div class="container">
+    <div class="p-3 mb-2 bg-success text-white">
+        <h1>HELLO AND WELCOME TO ABOUT US</h1>
+    </div>
+    {% load static %}
+    <img src="{%static 'Ecom/aboutus.jpg'%}" class="img-fluid" alt="Responsive image">
+    <div class=" mt-2 p-3 mb-2 bg-dark text-white">
+        <h4>Introduction of website : </h4>
+    </div>
+    <p>
+        Ecom Private Limited, d/b/a Ecom is an Indian e-commerce company based in Saindwar, India. It was founded by Harsh Pratap Singh. in 2019. The company initially focused on book sales, before expanding into other product categories such as consumer electronics, fashion, and lifestyle products.
+        As of oct 2019, Ecom held a 39.5% market share of India's e-commerce industry.Ecom is significantly dominant in the sale of apparel (a position that was bolstered by its acquisitions of Myntra and Jabong.com), and was described as being "neck and neck" with Amazon in the sale of electronics and mobile phones.Ecomalso owns PhonePe, a mobile payments service based on the Unified Payments Interface (UPI).
+        In August 2018, U.S.-based retail chain Walmart acquired a 77% controlling stake in Ecom for US$16 billion, valuing it at $20 billion.<br>
+        <div class=" mt-2 p-3 mb-2 bg-dark text-white">
+            <h4>Introduction of Developer : </h4>
+        </div>
+        <p>
+            This website is created by Harsh Pratap Singh.<br>
+            The framework used in this website is Django.<br>
+            This website is made with many languages like PYTHON,CSS,JAVASCRIPT,HTML.<br>
+        </p>
+        <div class="container mr-auto">{% load static %}<img src="{%static 'Ecom/thankyou.jpg'%}" class="img-fluid" width="400" height="200" alt="Responsive image"></div>
+    </p>
+</div>
+{% endblock body %}
+{% block js %}
+<script>
+if (localStorage.getItem('cart') == null) {
+    var cart = {};
+} else {
+    cart = JSON.parse(localStorage.getItem('cart'));
+}
+var sum = 0;
+for (item in cart) {
+    let qty = cart[item][0];
+    sum = sum + qty;
+}
+document.getElementById('cart').innerHTML = sum;
+</script>
+{% endblock js %}
